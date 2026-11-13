@@ -1,0 +1,69 @@
+{
+  "id": "./",
+  "name": "知启 · AI 学习桌面",
+  "short_name": "知启",
+  "description": "一站式 AI 学习桌面：同步课堂、精准学、AI 老师、作业批改、错题本、学习计划与家长守护。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./#/home",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f3f1e9",
+  "theme_color": "#12213b",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "preview.png",
+      "sizes": "1440x900",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "知启学习桌面"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI 老师",
+      "short_name": "问小思",
+      "description": "打开启发式 AI 辅导",
+      "url": "./#/tutor",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "学习计划",
+      "short_name": "计划",
+      "description": "查看今日任务与专注计时",
+      "url": "./#/plan",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "错题本",
+      "short_name": "错题",
+      "description": "复习错题并重新作答",
+      "url": "./#/mistakes",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

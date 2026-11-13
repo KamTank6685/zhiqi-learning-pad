@@ -1,0 +1,563 @@
+/* ==========================================================================
+   知启 · iPad / touch / PWA layer
+   Loaded last so it can tune hit areas without disturbing the desktop layout.
+   ========================================================================== */
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+[role="button"],
+.switch,
+.range {
+  touch-action: manipulation;
+}
+
+.view,
+.chat-body,
+.modal-body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-touch-callout: none;
+  }
+
+  .bubble,
+  .knowledge-text,
+  .story-box,
+  .paper-sheet,
+  .report-panel,
+  .modal-body {
+    -webkit-touch-callout: default;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+.install-button {
+  color: var(--mint-deep);
+  border-color: #cfece6;
+  background: var(--mint-soft);
+}
+
+.install-button:hover {
+  color: #086f5f;
+  border-color: #b3e6dc;
+  background: #e8faf5;
+}
+
+.install-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 13px;
+  border: 1px solid #cdeee7;
+  border-radius: 12px;
+  background:
+    radial-gradient(180px 100px at 100% 0%, rgba(26, 199, 163, .1), transparent 70%),
+    linear-gradient(135deg, #f1fcf8, #fffdf7);
+}
+
+.install-card-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  color: var(--mint-deep);
+  border-radius: 10px;
+  background: rgba(26, 199, 163, .12);
+}
+
+.install-card-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.install-card-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.install-card-copy strong {
+  display: block;
+  color: #174f47;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.install-card-copy p {
+  margin-top: 2px;
+  color: #65827b;
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+.install-card .btn {
+  flex: 0 0 auto;
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 8.5px;
+}
+
+.install-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.install-step {
+  display: flex;
+  gap: 9px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.install-step-num {
+  display: grid;
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+  place-items: center;
+  color: #fff;
+  border-radius: 7px;
+  background: var(--navy);
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.install-step-copy strong {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 9.5px;
+  font-weight: 650;
+}
+
+.install-step-copy span {
+  display: block;
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 8.5px;
+  line-height: 1.55;
+}
+
+.install-url {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  padding: 9px 10px;
+  border: 1px dashed #cfddd8;
+  border-radius: 9px;
+  background: var(--surface-2);
+}
+
+.install-url code {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  color: #48625c;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.install-url .btn {
+  min-height: 28px;
+  padding: 0 7px;
+  font-size: 8px;
+}
+
+.install-note {
+  display: flex;
+  gap: 7px;
+  margin-top: 11px;
+  padding: 9px 10px;
+  color: #806a3e;
+  border-radius: 8px;
+  background: #fff8e6;
+  font-size: 8.5px;
+  line-height: 1.6;
+}
+
+.install-note svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+  margin-top: 1px;
+  color: #b8861b;
+}
+
+/* Standalone: respect the home indicator and landscape notches. */
+@media (display-mode: standalone) {
+  .topbar {
+    padding-right: max(24px, env(safe-area-inset-right));
+    padding-left: max(24px, env(safe-area-inset-left));
+  }
+
+  .view {
+    padding-bottom: max(44px, calc(env(safe-area-inset-bottom) + 26px));
+  }
+
+  .sidebar-inner {
+    padding-top: max(22px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .focus-hud {
+    right: max(24px, env(safe-area-inset-right));
+    bottom: max(24px, calc(env(safe-area-inset-bottom) + 14px));
+  }
+}
+
+/* Larger hit areas for iPad and other touch screens. */
+@media (pointer: coarse) {
+  .icon-button {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+  }
+
+  .btn {
+    min-height: 46px;
+    padding-right: 18px;
+    padding-left: 18px;
+    font-size: 13px;
+  }
+
+  .btn-sm {
+    min-height: 38px;
+    padding-right: 12px;
+    padding-left: 12px;
+    font-size: 11px;
+  }
+
+  .nav-item {
+    height: 47px;
+  }
+
+  .task-item {
+    min-height: 56px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .day-task {
+    min-height: 62px;
+  }
+
+  .task-check,
+  .day-task .task-check {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+
+  .task-check svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .switch {
+    width: 44px;
+    height: 24px;
+    flex-basis: 44px;
+  }
+
+  .switch::after {
+    width: 20px;
+    height: 20px;
+  }
+
+  .switch.is-on::after {
+    transform: translateX(20px);
+  }
+
+  .filter-chip {
+    height: 38px;
+    padding: 0 13px;
+  }
+
+  .subject-tab {
+    height: 44px;
+  }
+
+  .quick-tool {
+    min-height: 58px;
+  }
+
+  .ai-suggestion,
+  .quick-prompt {
+    min-height: 32px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+
+  .message-action {
+    min-height: 30px;
+  }
+
+  .modal-close {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .course-card {
+    min-height: 66px;
+  }
+
+  .quiz-option {
+    min-height: 54px;
+  }
+
+  .timer-preset {
+    min-height: 34px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .range {
+    height: 8px;
+  }
+
+  .range::-webkit-slider-thumb {
+    width: 26px;
+    height: 26px;
+  }
+
+  .range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  .chat-starter {
+    min-height: 60px;
+  }
+
+  .day-button {
+    min-height: 80px;
+  }
+
+  .composer-send {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+  }
+
+  .composer-tool {
+    width: 40px;
+    height: 40px;
+  }
+
+  .message-action,
+  .link-button {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Hover styles should not stick after a tap. */
+@media (hover: none) {
+  .btn:hover,
+  .quick-tool:hover,
+  .course-card:hover,
+  .enrich-card:hover,
+  .mistake-card:hover,
+  .day-button:hover,
+  .lesson-row:hover,
+  .quiz-option:hover:not([disabled]),
+  .chat-starter:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .nav-item:hover {
+    background: transparent;
+  }
+
+  .nav-item.is-active:hover {
+    background: linear-gradient(90deg, rgba(26, 199, 163, .19), rgba(26, 199, 163, .07));
+  }
+}
+
+@media (pointer: coarse) and (max-width: 720px) {
+  .install-card {
+    flex-wrap: wrap;
+  }
+
+  .install-card .btn {
+    width: 100%;
+    min-height: 38px;
+  }
+
+  .topbar .install-button {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .hero-actions .btn {
+    min-height: 46px;
+  }
+
+  .btn-sm {
+    min-height: 40px;
+  }
+
+  .today-foot .btn,
+  .install-card .btn {
+    min-height: 40px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .mistake-actions .btn {
+    min-height: 40px;
+    padding-right: 11px;
+    padding-left: 11px;
+    font-size: 9.5px;
+  }
+
+  .chat-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .day-task-more {
+    width: 36px;
+    height: 36px;
+  }
+
+  .week-nav button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .filter-search {
+    min-height: 40px;
+  }
+
+  .ai-suggestion,
+  .quick-prompt {
+    min-height: 38px;
+  }
+
+  .link-button {
+    min-height: 32px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+  .path-go {
+    top: 9px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    padding: 9px;
+    border-radius: 9px;
+    background: var(--mint-soft);
+  }
+
+  .path-step {
+    padding-right: 48px;
+  }
+
+  .modal-foot .btn {
+    min-height: 44px;
+  }
+
+  .setting-row[data-setting] {
+    min-height: 52px;
+    cursor: pointer;
+  }
+}
+
+.setting-row[data-setting] {
+  border-radius: 9px;
+}
+
+.setting-row[data-setting]:active {
+  background: #fbfaf5;
+}
+
+@media (pointer: coarse) {
+  .ask-pill {
+    height: 44px;
+  }
+
+  .profile-button {
+    min-height: 44px;
+  }
+
+  .segmented button {
+    height: 42px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+@media (pointer: coarse) {
+  .btn:active,
+  .quick-tool:active,
+  .course-card:active,
+  .enrich-card:active,
+  .subject-tab:active,
+  .nav-item:active,
+  .filter-chip:active,
+  .quiz-option:active:not([disabled]) {
+    filter: brightness(.975);
+    transform: scale(.985);
+  }
+}
+
+.install-button {
+  width: auto;
+  flex-basis: auto;
+  gap: 5px;
+  padding: 0 10px;
+}
+
+.install-label {
+  color: #116a5c;
+  font-size: 10px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .install-label {
+    display: none;
+  }
+
+  .install-button {
+    width: 44px;
+    flex-basis: 44px;
+    padding: 0;
+  }
+}
+
+.install-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
